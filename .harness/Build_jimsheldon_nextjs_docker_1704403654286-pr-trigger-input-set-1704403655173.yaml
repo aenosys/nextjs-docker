@@ -1,0 +1,14 @@
+inputSet:
+  name: Build_jimsheldon_nextjs_docker_1704403654286-pr-trigger-input-set
+  identifier: Build_jimsheldon_nextjs_docker_1704403654286prtriggerinputset
+  orgIdentifier: default
+  projectIdentifier: jim_sheldon_dec7
+  pipeline:
+    identifier: Build_jimsheldon_nextjs_docker_1704403654286
+    properties:
+      ci:
+        codebase:
+          build:
+            type: PR
+            spec:
+              number: <+trigger.prNumber>
