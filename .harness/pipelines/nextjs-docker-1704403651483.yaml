@@ -18,27 +18,25 @@ pipeline:
           execution:
             steps:
               - step:
-                  identifier: npminstall
-                  name: npm_install
+                  type: BuildAndPushDockerRegistry
+                  name: Docker Build
+                  identifier: Docker_Build
                   spec:
-                    command: npm install
-                  timeout: ""
-                  type: Run
-              - step:
-                  identifier: dockerbuild
-                  name: docker_build
-                  spec:
-                    image: plugins/docker
-                    settings:
-                      dry_run: "true"
-                      repo: hello/world
-                      tags: latest
-                  timeout: ""
-                  type: Plugin
+                    connectorRef: account.harnessImage
+                    repo: example/repo
+                    tags:
+                      - latest
+                    caching: true
           platform:
-            arch: Amd64
             os: Linux
+            arch: Amd64
           runtime:
-            spec: {}
             type: Cloud
+            spec: {}
         type: CI
+        variables:
+          - name: PLUGIN_DRY_RUN
+            type: String
+            description: ""
+            required: false
+            value: "true"
